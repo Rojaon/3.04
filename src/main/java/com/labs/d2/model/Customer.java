@@ -1,9 +1,6 @@
 package com.labs.d2.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -13,13 +10,14 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
     private String customerName;
-    private String customerStatus;
+    @Enumerated(EnumType.STRING)
+    private CustomerStatus customerStatus;
     private Integer totalCustomerMileage;
 
     public Customer() {
     }
 
-    public Customer(String customerName, String customerStatus, Integer totalCustomerMileage) {
+    public Customer(String customerName, CustomerStatus customerStatus, Integer totalCustomerMileage) {
         this.customerName = customerName;
         this.customerStatus = customerStatus;
         this.totalCustomerMileage = totalCustomerMileage;
@@ -41,11 +39,11 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public String getCustomerStatus() {
+    public CustomerStatus getCustomerStatus() {
         return customerStatus;
     }
 
-    public void setCustomerStatus(String customerStatus) {
+    public void setCustomerStatus(CustomerStatus customerStatus) {
         this.customerStatus = customerStatus;
     }
 
